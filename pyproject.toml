@@ -6,7 +6,7 @@ authors = ["zyanwei2011 <zyanwei2011@163.com>"]
 license = "apache-2.0"
 
 [tool.poetry.dependencies]
-python = "^3.5"
+python = "^3.6"
 pytest = "^6.1.2"
 requests = "^2.24.0"
 
