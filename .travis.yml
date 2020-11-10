@@ -6,8 +6,8 @@ python:
 matrix:
   include:
     - python: 3.8
-      dist: xenial
-      sudo: true
+      dist: xenial  # Required for Python 3.8
+      sudo: true    # Required for Python 3.8
 install:
   - pip install poetry
   - poetry install -vvv
