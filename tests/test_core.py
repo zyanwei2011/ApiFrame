@@ -19,6 +19,7 @@ def test_httpbin_get():
     TestHttpbin().run()\
         .validate('status_code', 200)\
         .validate('headers.server', 'gunicorn/19.9.0')\
+        .validate('json().args.a', '123')
 
 
 
