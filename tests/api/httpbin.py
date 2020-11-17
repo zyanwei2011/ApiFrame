@@ -1,7 +1,7 @@
 from api.api import BaseApi
 
 
-class APiHttpGet(BaseApi):
+class APiHttpBinGet(BaseApi):
 
     url = 'http://www.httpbin.org/get'
     header = {'accept': 'application/json'}
@@ -10,10 +10,16 @@ class APiHttpGet(BaseApi):
     params = {'a': 123}
 
 
-class APiHttpPost(BaseApi):
+class APiHttpBinPost(BaseApi):
     url = 'http://www.httpbin.org/post'
     header = {'accept': 'application/json'}
     method = 'POST'
     cookies = {'cookies': ''}
     params = {'a': 123}
     json = {'m': ''}
+
+
+class APiHttpBinCookies(BaseApi):
+    url = 'http://www.httpbin.org/cookies'
+    header = {'accept': 'application/json'}
+    method = 'GET'
