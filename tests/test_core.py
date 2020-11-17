@@ -1,28 +1,25 @@
-from api import __version__
-from api.api import BaseApi
+from tests.api.httpbin import *
 
 
 def test_version():
+    from api import __version__
     assert isinstance(__version__, str)
 
 
-class TestHttpbin(BaseApi):
-
-    url = 'http://www.httpbin.org/get'
-    header = {'accept': 'application/json'}
-    method = 'GET'
-    cookies = {'cookies':''}
-    params = {'a': 123}
-
-
 def test_httpbin_get():
-    TestHttpbin().run()\
+    APiHttpGet().set_params(a='46')\
+        .run()\
+        .validate('status_code', 200)\
+        .validate('headers.server', 'gunicorn/19.9.0')\
+        .validate('json().args.a', '46')
+
+
+def test_httpbin_post():
+    APiHttpPost().set_json({'m': 9999})\
+        .run()\
         .validate('status_code', 200)\
         .validate('headers.server', 'gunicorn/19.9.0')\
         .validate('json().args.a', '123')
-
-
-
 
 
 

@@ -6,9 +6,21 @@ class BaseApi(object):
     url = ''
     cookies = {}
     header = {}
-    data = {}
+    # data = {}
     json = {}
     params = {}
+
+    def set_params(self, **params):
+        self.params = params
+        return self
+
+    # def set_data(self, data):
+    #     self.data = data
+    #     return self
+
+    def set_json(self, json):
+        self.json = json
+        return self
 
     def run(self):
         self.response = requests.request(
@@ -16,8 +28,8 @@ class BaseApi(object):
             self.url,
             cookies=self.cookies,
             headers=self.header,
-            data=self.data,
             json=self.json,
+            # data=self.data,
             params=self.params)
         return self
 
@@ -25,7 +37,7 @@ class BaseApi(object):
         value = self.response
         for _key in key.split('.'):
             if isinstance(value, requests.Response):
-                if _key == 'json()':
+                if _key in ['json()', 'json']:
                     value = self.response.json()
                 else:
                     value = getattr(value, _key)
