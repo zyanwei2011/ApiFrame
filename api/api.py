@@ -6,30 +6,38 @@ class BaseApi(object):
     url = ''
     cookies = {}
     header = {}
-    # data = {}
-    json = {}
-    params = {}
+    params = ''
+    data = ''
+    json = ''
 
-    def set_params(self, **params):
+    def __init__(self):
+        self.response = None
+
+    def set_cookie(self, key, value):
+        self.cookies.update({key: value})
+        return self
+
+    def set_params(self, params: dict):
         self.params = params
         return self
 
-    # def set_data(self, data):
-    #     self.data = data
-    #     return self
+    def set_data(self, data: dict):
+        self.data = data
+        return self
 
-    def set_json(self, json):
+    def set_json(self, json: dict):
         self.json = json
         return self
 
-    def run(self):
-        self.response = requests.request(
+    def run(self, session=None):
+        session = session or requests.sessions.Session()
+        self.response = session.request(
             self.method,
             self.url,
             cookies=self.cookies,
             headers=self.header,
             json=self.json,
-            # data=self.data,
+            data=self.data,
             params=self.params)
         return self
 
