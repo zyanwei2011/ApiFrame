@@ -57,3 +57,7 @@ class BaseApi(object):
         value = self.extract(key)
         assert value == expected_value
         return self
+
+    def get_response(self):
+        return self.response
+
